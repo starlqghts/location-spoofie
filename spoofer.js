@@ -5,9 +5,9 @@
 
 // CONFIGURATION: Set your target GPS coordinates here
 const TARGET_CONFIG = {
-    latitude: 37.7749,    // Target Latitude (e.g., San Francisco)
-    longitude: -122.4194, // Target Longitude (e.g., San Francisco)
-    accuracy: 5.0         // Simulated horizontal accuracy in meters
+    latitude: 43.77306,    // Schulich School of Business Latitude
+    longitude: -79.49861,  // Schulich School of Business Longitude
+    accuracy: 5.0
 };
 
 function $response(context, callback) {
