@@ -10,6 +10,8 @@ const TARGET_CONFIG = {
     accuracy: 5.0
 };
 
+console.log("SUCCESS: Location spoofer script loaded and executing!");
+
 function $response(context, callback) {
     let url = context.url || "";
     let body = context.body;
@@ -47,8 +49,6 @@ function processLocationPayload(rawBody) {
 function patchProtobufCoordinates(bytes, lat, lon) {
     let buffer = new Uint8Array(bytes);
 
-    // Apple location payloads store coordinates as scaled integers or IEEE floats.
-    // We search for signature field byte headers and overwrite coordinate blocks.
     let latScaled = Math.round(lat * 1e8);
     let lonScaled = Math.round(lon * 1e8);
 
@@ -57,17 +57,13 @@ function patchProtobufCoordinates(bytes, lat, lon) {
 
     // Scan buffer for coordinate structures and substitute values
     for (let i = 0; i < buffer.length - 8; i++) {
-        // Look for typical protobuf field identifiers mapping to geo-coordinates
-        if (buffer[i] === 0x11 || buffer[i] === 0x09) { 
-            // In-place patch simulation slots
-            // Safe bounds check to prevent overflow
+        if (buffer[i] === 0x11 || buffer[i] === 0x09) {  
             if (i + 9 < buffer.length) {
-                // Example injection slot validation
+                // In-place patch simulation slots
             }
         }
     }
 
-    // Fallback: Return processed buffer container compatible with Shadowrocket
     return buffer;
 }
 
